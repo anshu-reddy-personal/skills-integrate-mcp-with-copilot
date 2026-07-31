@@ -8,9 +8,74 @@
   </head>
   <body>
     <header>
-      <h1>Mergington High School</h1>
-      <h2>Extracurricular Activities</h2>
+      <div class="header-content">
+        <div class="header-titles">
+          <h1>Mergington High School</h1>
+          <h2>Extracurricular Activities</h2>
+        </div>
+        <div class="user-menu">
+          <button
+            id="user-icon-btn"
+            class="user-icon-btn"
+            type="button"
+            aria-label="Teacher account menu"
+            aria-expanded="false"
+            aria-controls="user-dropdown"
+          >
+            👤
+          </button>
+          <div id="user-dropdown" class="user-dropdown hidden" role="menu">
+            <div id="auth-logged-out">
+              <p class="dropdown-hint">Teachers only</p>
+              <button id="show-login-btn" type="button" role="menuitem">
+                Login
+              </button>
+            </div>
+            <div id="auth-logged-in" class="hidden">
+              <p id="logged-in-label" class="dropdown-hint"></p>
+              <button id="logout-btn" type="button" role="menuitem">
+                Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </header>
+
+    <div id="login-modal" class="modal hidden" aria-hidden="true">
+      <div class="modal-backdrop" data-close-modal></div>
+      <div
+        class="modal-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="login-title"
+      >
+        <h3 id="login-title">Teacher Login</h3>
+        <form id="login-form">
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required autocomplete="username" />
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              autocomplete="current-password"
+            />
+          </div>
+          <div id="login-error" class="error hidden" role="alert"></div>
+          <div class="modal-actions">
+            <button type="button" id="cancel-login-btn" class="secondary-btn">
+              Cancel
+            </button>
+            <button type="submit">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
     <main>
       <section id="activities-container">
@@ -21,8 +86,9 @@
         </div>
       </section>
 
-      <section id="signup-container">
-        <h3>Sign Up for an Activity</h3>
+      <section id="signup-container" class="hidden">
+        <h3>Register Student</h3>
+        <p class="admin-note">Teachers can register students for activities.</p>
         <form id="signup-form">
           <div class="form-group">
             <label for="email">Student Email:</label>
@@ -35,10 +101,11 @@
               <!-- Activity options will be loaded here -->
             </select>
           </div>
-          <button type="submit">Sign Up</button>
+          <button type="submit">Register Student</button>
         </form>
-        <div id="message" class="hidden"></div>
       </section>
+
+      <div id="message" class="hidden"></div>
     </main>
 
     <footer>
